@@ -1,0 +1,5 @@
+/* iOS Arabic localized strings — Swarm Core Security */
+"IAP_PRO_TIER_TITLE" = "ترقية حماية النواة الاحترافية Pro";
+"IAP_PRO_TIER_DESC" = "فتح التشفير بمابعد الكم الشامل ونواة معالجة المصفوفات الطوبولوجية لصد برمجيات الفدية.";
+"THREAT_ISOLATED" = "تم عزل التهديد";
+"SYSTEM_NOMINAL" = "حالة النظام طبيعية";

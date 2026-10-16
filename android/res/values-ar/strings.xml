@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Arabic strings with native RTL. Duplicate this file into:
+     values/ (en), values-es/, values-fr/, values-pt/, values-de/, values-it/ -->
+<resources>
+    <string name="app_name">Swarm Core Security</string>
+    <string name="iap_pro_tier_title">ترقية حماية النواة الاحترافية Pro</string>
+    <string name="iap_pro_tier_description">فتح التشفير بمابعد الكم الشامل ونواة معالجة المصفوفات الطوبولوجية لصد برمجيات الفدية.</string>
+    <string name="threat_isolated">تم عزل التهديد</string>
+    <string name="system_nominal">حالة النظام طبيعية</string>
+</resources>

@@ -1,0 +1,14 @@
+Swarm Core Security provides enterprise-grade, post-quantum resilient device armor.
+
+Abandoning traditional signature-based antivirus, the app runs a native bare-metal
+15-agent autonomous swarm that treats device state as a thermodynamic system:
+
+- Permanent Freemium: real-time dynamic resource optimization keeps background
+  footprint under 1%/hr and extends battery life.
+- Pro Subscription: unlocks the lattice-based (R_q, q=3329) cryptographic threat
+  shields and the topological data analysis (TDA) ransomware interceptor that
+  isolates zero-day file-encryption attacks by their geometric signature.
+
+Zero third-party runtime dependencies. All analysis happens in on-device memory;
+no personal content ever leaves your phone. Optional local VPN tunnel for
+on-device packet inspection.

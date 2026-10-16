@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy &amp; Data Security Prominent Disclosure — Swarm Core Security</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #2d3748; max-width: 800px; margin: 0 auto; padding: 24px; background-color: #f7fafc; }
+        h1 { color: #1a202c; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; font-size: 24px; }
+        h2 { color: #2b6cb0; font-size: 18px; margin-top: 24px; }
+        p, li { font-size: 14px; text-align: justify; }
+        ul { padding-left: 20px; }
+        .disclosure-box { background-color: #ebf8ff; border-left: 4px solid #3182ce; padding: 16px; margin: 20px 0; border-radius: 4px; }
+        .highlight { font-weight: bold; color: #2c5282; }
+        footer { margin-top: 32px; font-size: 12px; color: #718096; }
+    </style>
+</head>
+<body>
+
+    <h1>Privacy Policy &amp; System Disclosures</h1>
+    <p><strong>Effective Date:</strong> October 16, 2026<br>
+    <strong>Controller:</strong> Swarm Core Security — core-engine@quantum-safe.internal</p>
+
+    <div class="disclosure-box">
+        <strong>PROMINENT DISCLOSURE (App Store Compliance):</strong><br>
+        This application uses an autonomous multi-agent background framework to detect
+        ransomware encryption behavior, memory tampering, and anomalous network activity.
+        To do this it reads <em>local device telemetry only</em>: CPU thermal state,
+        battery voltage behavior, memory pressure, file-operation entropy shapes, and
+        packets traversing the on-device VPN tunnel you explicitly enable. All analysis
+        happens on your device.
+    </div>
+
+    <h2>1. Data Collection and Zero-Third-Party Transmission</h2>
+    <p>All security computation — lattice verification, topological file-system analysis,
+    agent consensus — executes in local device memory under a zero-third-party-dependency
+    model.</p>
+    <ul>
+        <li><span class="highlight">No exfiltration of personal content:</span> file names, message text,
+        keystrokes, contacts, and photos are never read, bundled, transmitted, or sold.
+        The file-system module observes <em>statistical shapes</em> of I/O (entropy
+        distributions), never file contents.</li>
+        <li><span class="highlight">Hardware telemetry:</span> thermal, voltage, and memory-pressure
+        readings feed the on-device Resource Optimizer and are discarded after use.</li>
+        <li><span class="highlight">Network tunnel:</span> when you enable the optional local VPN,
+        packets are inspected on-device by the Network Warden cohort and never leave
+        the device except to their original destination.</li>
+    </ul>
+
+    <h2>2. Background Processing and Battery</h2>
+    <p>The background service is throttled dynamically by the thermodynamic governor,
+    which parks agent cohorts as temperature or battery drain rises. Target footprint:
+    under 1% battery per hour in nominal conditions. Excluding the app from aggressive
+    OEM battery savers is recommended so the governor — not the OS task killer —
+    manages the schedule.</p>
+
+    <h2>3. Permissions and Why Each Exists</h2>
+    <ul>
+        <li><strong>Local VPN (Android VpnService / iOS NetworkExtension):</strong> optional;
+        enables on-device packet inspection by the Network Warden cohort.</li>
+        <li><strong>Storage / file access:</strong> optional; enables the topological
+        ransomware interceptor to observe I/O entropy shapes. Denying it disables only
+        that module.</li>
+        <li><strong>Notifications:</strong> threat-isolation alerts in your language.</li>
+    </ul>
+    <p>We do <strong>not</strong> request Accessibility Service access, SMS/call-log
+    access, or device-admin privileges.</p>
+
+    <h2>4. Subscriptions and Payments</h2>
+    <p>Pro subscriptions are billed through Google Play Billing / Apple In-App Purchase
+    on mobile, and through Stripe on the web PWA. We never see or store your card
+    details. Cancelling returns the app to the permanent freemium tier; no data is
+    deleted as a consequence.</p>
+
+    <h2>5. Your Rights (GDPR / CCPA)</h2>
+    <p>Because analysis is on-device, there is effectively no personal data held on our
+    servers to export or delete beyond your subscription record (email + tier). Contact
+    the controller above to access, correct, or delete that record.</p>
+
+    <h2>6. Changes</h2>
+    <p>Material changes to this policy will be surfaced in-app before they take effect.</p>
+
+    <footer>Swarm Core Security v2.0.0 — bare-metal 15-agent swarm core, zero third-party runtime dependencies.</footer>
+
+</body>
+</html>

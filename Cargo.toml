@@ -1,0 +1,25 @@
+[package]
+name = "autonomous_swarm_core"
+version = "2.0.0"
+edition = "2021"
+authors = ["Lead Architect Engineer <core-engine@quantum-safe.internal>"]
+description = "Bare-metal 15-agent autonomous swarm security core: lattice PQC primitives, thermodynamic resource governor, TDA ransomware interceptor, P2P mesh, OTA manifest verification. Zero third-party runtime dependencies."
+publish = false
+
+[lib]
+name = "autonomous_swarm_core"
+crate-type = ["staticlib", "cdylib"] # staticlib -> Xcode link (iOS), cdylib -> Android NDK .so
+
+[profile.dev]
+panic = "abort"           # no_std cannot unwind; dev artifacts are staticlib/cdylib
+
+[profile.release]
+opt-level = 3             # maximum performance optimizations
+lto = true                # link-time optimization across all modules
+codegen-units = 1         # single codegen unit for maximal global optimization
+panic = "abort"           # no unwinding tables in the bare-metal artifact
+strip = true              # strip symbol tables / debug references
+
+[profile.test]
+inherits = "dev"
+panic = "unwind"          # test builds link std (see cfg_attr in lib.rs), so unwind is fine

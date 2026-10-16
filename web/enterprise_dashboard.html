@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Swarm Orchestrator Dashboard</title>
+    <style>
+        body { font-family: 'Courier New', Courier, monospace; background-color: #0d1117; color: #58a6ff; margin: 0; padding: 20px; }
+        .dashboard-container { max-width: 1200px; margin: 0 auto; border: 1px solid #30363d; padding: 20px; background-color: #161b22; border-radius: 6px; }
+        .header { border-bottom: 2px solid #21262d; padding-bottom: 10px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .system-status { font-weight: bold; padding: 6px 12px; border-radius: 4px; background-color: #238636; color: #ffffff; animation: pulse 2s infinite; }
+        .matrix-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 30px; }
+        .cohort-card { border: 1px solid #30363d; padding: 15px; background-color: #0d1117; border-radius: 4px; }
+        .cohort-title { font-size: 14px; font-weight: bold; color: #c9d1d9; border-bottom: 1px solid #21262d; padding-bottom: 5px; margin-bottom: 10px; }
+        .agent-node { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 5px; padding: 4px; background-color: #161b22; border-radius: 2px; }
+        .status-active { color: #39d353; }
+        .status-dormant { color: #8b949e; }
+        .metrics-panel { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; background-color: #0d1117; padding: 15px; border: 1px solid #30363d; border-radius: 4px; font-size: 13px; }
+        .metric-value { color: #ff7b72; font-weight: bold; }
+        @keyframes pulse { 0% { opacity: 0.7; } 50% { opacity: 1; } 100% { opacity: 0.7; } }
+    </style>
+</head>
+<body>
+
+<div class="dashboard-container">
+    <div class="header">
+        <div>
+            <h1 style="margin: 0; font-size: 20px; color: #c9d1d9;">SWARM-ORCHESTRATOR // ENTERPRISE CONSOLE</h1>
+            <span style="font-size: 11px; color: #8b949e;">Lattice Subsystem Security Framework v2.0.0</span>
+        </div>
+        <div class="system-status" id="quorum">QUORUM NOMINAL (15/15)</div>
+    </div>
+
+    <div class="matrix-grid" id="cohorts"></div>
+
+    <div class="metrics-panel">
+        <div>Lattice Vector Verification: <span class="metric-value">M-LWE HARDENED</span></div>
+        <div>TDA Homology Entropy Rate: <span class="metric-value" id="tda">0.0243 DELTA</span></div>
+        <div>Avg Global Battery Footprint: <span class="metric-value">&lt; 0.78% / HR</span></div>
+        <div>Consensus State: <span class="metric-value">aBFT COMPLIANT</span></div>
+    </div>
+</div>
+
+<script>
+// Renders the 5 cohorts x 3 agents from a live status payload.
+// In production this is fed by the native bridge (postMessage from the
+// PWA webview or a local telemetry endpoint); defaults to nominal demo.
+(function () {
+    var cohorts = [
+        ["01 // MemorySentinels", 3, 4, 5],
+        ["02 // NetworkWardens", 6, 7, 8],
+        ["03 // FileObfuscators", 9, 10, 11],
+        ["04 // CryptoSigners", 12, 13, 14],
+        ["05 // ExecOrchestrators", 0, 1, 2]
+    ];
+    var active = 15; // updated by telemetry messages
+    var root = document.getElementById("cohorts");
+
+    function render() {
+        root.innerHTML = "";
+        cohorts.forEach(function (c) {
+            var card = document.createElement("div");
+            card.className = "cohort-card";
+            var title = document.createElement("div");
+            title.className = "cohort-title";
+            title.textContent = c[0];
+            card.appendChild(title);
+            for (var k = 1; k < c.length; k++) {
+                var id = c[k];
+                var row = document.createElement("div");
+                row.className = "agent-node";
+                var name = document.createElement("span");
+                name.textContent = "Agent_" + (id < 10 ? "0" + id : id);
+                var st = document.createElement("span");
+                var isActive = id < active;
+                st.className = isActive ? "status-active" : "status-dormant";
+                st.textContent = isActive ? "ACTIVE" : "DORMANT";
+                row.appendChild(name); row.appendChild(st);
+                card.appendChild(row);
+            }
+            root.appendChild(card);
+        });
+        var q = document.getElementById("quorum");
+        q.textContent = active === 15 ? "QUORUM NOMINAL (15/15)"
+            : "QUORUM DEGRADED (" + active + "/15)";
+        q.style.backgroundColor = active === 15 ? "#238636" : "#9e6a03";
+    }
+
+    window.addEventListener("message", function (ev) {
+        if (ev.data && ev.data.type === "SWARM_DENSITY_SHIFT") {
+            active = ev.data.payload.activeSwarmCount | 0;
+            render();
+        }
+    });
+
+    render();
+})();
+</script>
+
+</body>
+</html>
